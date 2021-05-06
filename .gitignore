@@ -48,3 +48,4 @@ Thumbs.db
 
 # Cache files
 *.cache
+package-lock.json
