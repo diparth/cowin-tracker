@@ -102,6 +102,10 @@ export class DashboardComponent implements OnInit {
           }
         });
       });
+    }, err => {
+      if (err && (err.status == 401 && err.statusText == "Unauthorized")) {
+        this.authService.logout();
+      }
     });
   }
 
