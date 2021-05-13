@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://cdn-api.co-vin.in/api",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
