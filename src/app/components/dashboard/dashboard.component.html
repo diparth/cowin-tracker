@@ -1,1 +1,58 @@
-<p>dashboard works!</p>
+<section>
+  <div class="header">
+    <h4>Registered Mobile: {{ mobile }}</h4>
+  </div>
+
+  <h4 class="steps">Step 1: Select Users</h4>
+  <div class="cards">
+    <div *ngFor="let user of users" class="user-card">
+      <p class="name">{{ user.name }}</p>
+      <p class="name">Dose 1: {{ user.dose1_date }}</p>
+      <p class="name">Dose 2: {{ user.dose2_date }}</p>
+      <input type="checkbox" [value]="user" (change)="onCheckChange(user, $event)">
+    </div>
+  </div>
+
+  <h4 class="steps">Step 2: Decide your preferences</h4>
+  <div class="center-pref">
+    <div class="filters" [formGroup]="form">
+      <label class="form-control-label" for="pincode">Pincode</label>
+      <input type="text" id="pincode" placeholder="Enter your preferred pincode." class="form-control" [formControl]="pinCode">
+        <label class="form-control-label" for="dose">Dose Number</label>
+        <select type="text" id="dose" placeholder="Dose number" class="form-control" [formControl]="dose">
+          <option>1</option>
+          <option>2</option>
+        </select>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="age" id="18" value="18" [formControl]="ageLimit" checked>
+        <label class="form-check-label" for="18">18+</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="age" id="45" value="45" [formControl]="ageLimit">
+        <label class="form-check-label" for="45">45+</label>
+      </div>
+
+      <button class="btn btn-light" (click)="searchCenters()">Search Centers</button>
+    </div>
+
+    <div class="cards centers">
+      <div *ngFor="let session of sessions" class="user-card">
+        <p>{{ session.name }}</p>
+        <p>{{ session.date }}</p>
+        <p>Age: {{ session.min_age_limit }}</p>
+        <p class="capacity" [ngClass]="{
+          'booked': session.available_capacity == 0,
+          'mid': session.available_capacity <= 10 && session.available_capacity > 0,
+          'free': session.available_capacity > 10
+        }">Capacity: {{ session.available_capacity }}</p>
+        <p>{{ session.slots | json }}</p>
+      </div>
+      <div *ngIf="!sessions.length" class="user-card">No Sessions</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-dark" (click)="automateProcess()">Start Tracker</button>
+    <button class="btn btn-light" (click)="stopProcess()">Stop Tracker</button>
+  </div>
+</section>

@@ -1,9 +1,19 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthenticateService } from './authenticate.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CenterService {
 
-  constructor() { }
+  constructor(private http: HttpClient, private authService: AuthenticateService) { }
+
+  public getCentersByCalanderPin(body: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Authorization': this.authService.accessToken });
+
+    // Date format: DD-MM-YYYY
+    return this.http.get(`/api/v2/appointment/sessions/calendarByPin?pincode=${body.pincode}&date=${body.date}`, { headers })
+  }
 }

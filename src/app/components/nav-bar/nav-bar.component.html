@@ -1,6 +1,9 @@
 <section>
   <div class="nav-bar">
     <h3>CoWin - Vaccine Booker</h3>
-    <button class="btn logout-btn" (click)="logout()">Logout</button>
+    <div>
+      <span class="counter" *ngIf="counter">Will Logout at: {{ counter }}</span>
+      <button *ngIf="counter" class="btn logout-btn" (click)="logout()">Logout</button>
+    </div>
   </div>
 </section>

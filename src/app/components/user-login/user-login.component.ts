@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../../services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
@@ -17,7 +18,7 @@ export class UserLoginComponent implements OnInit {
 
   private txnId: string;
 
-  constructor(private authService: AuthenticateService, private router: Router) { }
+  constructor(private authService: AuthenticateService, private router: Router, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.mobileFC = new FormControl('');
@@ -30,6 +31,8 @@ export class UserLoginComponent implements OnInit {
   }
 
   public processMobile(): void {
+    this.localStorageService.addToLocalStorage('mobile', this.mobileFC.value);
+
     this.authService.loginWithNumber({ mobile: this.mobileFC.value }).subscribe(result => {
       this.authService.setUpLocalStore({ txn_id: result.txnId });
       this.txnId = result.txnId;

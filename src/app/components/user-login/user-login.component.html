@@ -1,9 +1,7 @@
 <section>
-  <h1 class="display-1">Login</h1>
-
   <form [formGroup]="form">
 
-      <h3 class="display-3">Login with your Mobile</h3>
+      <h3>Login with your Mobile</h3>
       <div class="mb-3">
         <label for="mobile" class="form-label">Mobile Number</label>
         <input type="text" [formControl]="mobileFC" class="form-control" id="mobile"
@@ -12,7 +10,7 @@
       <div class="mb-3">
         <button type="button" (click)="processMobile()" class="btn btn-dark">Get OTP</button>
       </div>
-      <h3 class="display-3">Please enter correct OTP</h3>
+      <h3>Please enter correct OTP</h3>
       <div class="mb-3">
         <label for="otp" class="form-label">OTP</label>
         <input type="text" [formControl]="otpFC" class="form-control" id="otp" placeholder="Enter your correct otp."

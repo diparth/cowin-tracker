@@ -3,13 +3,16 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { API_URL } from '../helpers/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticateService {
+
+  public logoutCounter: BehaviorSubject<number> = new BehaviorSubject(undefined);
 
   constructor(
     private http: HttpClient,
@@ -34,13 +37,21 @@ export class AuthenticateService {
 
   public loginWithOTP(body): Observable<any> {
 
-    return this.http.post(`/api/v2/auth/validateMobileOtp`, body);
+    return this.http.post(`/api/v2/auth/validateMobileOtp`, body).pipe(map(res => {
+      const timestamp = Math.floor((new Date()).getTime());
+      this.logoutCounter.next(timestamp);
+
+      return res;
+    }));
   }
 
   public logout(): void {
     localStorage.removeItem('login_creds');
     localStorage.removeItem('user_details');
+    localStorage.removeItem('logout_time');
+    localStorage.removeItem('mobile');
 
+    this.logoutCounter.next(0);
     this.router.navigate(['login']);
   }
 
@@ -67,7 +78,7 @@ export class AuthenticateService {
   private get secretKey(): string {
     const existingSecretKey = this.localStorageService.getFromLocalStorage('secret_key');
 
-    if(Utils.isNullOrUndefined(existingSecretKey)) {
+    if (Utils.isNullOrUndefined(existingSecretKey)) {
       const scKey = "U2FsdGVkX18BYi2wPdSgIOI4TyVT0kIavMTI8eK/4Qr+eOVTP7N7EcRUaSMJrgv3h9ma1jFdNeE7YiF4fcqgNQ==";
       this.localStorageService.addToLocalStorage('secret_key', scKey);
 
