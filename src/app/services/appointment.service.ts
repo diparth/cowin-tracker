@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { API_BASE_URL } from '../helpers/constants';
 import { AuthenticateService } from './authenticate.service';
 
 @Injectable({
@@ -13,6 +14,6 @@ export class AppointmentService {
   public submitForAppointment(body: any): Observable<any> {
     const headers = new HttpHeaders({ 'Authorization': this.authService.accessToken });
 
-    return this.http.post(`/api/v2/appointment/schedule`, body, { headers })
+    return this.http.post(`${API_BASE_URL}/v2/appointment/schedule`, body, { headers })
   }
 }

@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { API_URL } from '../helpers/constants';
+import { API_BASE_URL } from '../helpers/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +32,12 @@ export class AuthenticateService {
       mobile: body.mobile
     };
 
-    return this.http.post(`/api/v2/auth/generateMobileOTP`, body, { headers });
+    return this.http.post(`${API_BASE_URL}/v2/auth/generateMobileOTP`, body, { headers });
   }
 
   public loginWithOTP(body): Observable<any> {
 
-    return this.http.post(`/api/v2/auth/validateMobileOtp`, body).pipe(map(res => {
+    return this.http.post(`${API_BASE_URL}/v2/auth/validateMobileOtp`, body).pipe(map(res => {
       const timestamp = Math.floor((new Date()).getTime());
       this.logoutCounter.next(timestamp);
 

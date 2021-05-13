@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthenticateService } from './authenticate.service';
+import { API_BASE_URL } from '../helpers/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,6 @@ export class UserService {
   public getBeneficiaries(): Observable<any> {
     const headers = new HttpHeaders({ 'Authorization': this.authService.accessToken });
 
-    return this.http.get(`/api/v2/appointment/beneficiaries`, { headers });
+    return this.http.get(`${API_BASE_URL}/v2/appointment/beneficiaries`, { headers });
   }
 }
