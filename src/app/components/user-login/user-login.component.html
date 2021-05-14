@@ -8,7 +8,9 @@
           placeholder="Enter your mobile number." required>
       </div>
       <div class="mb-3">
-        <button type="button" (click)="processMobile()" class="btn btn-dark">Get OTP</button>
+        <button type="button" mat-raised-button (click)="processMobile()">Get OTP</button>
+        <p *ngIf="otpSent" class="feedback">Sent</p>
+        <p *ngIf="otpSent">Will expire in: {{ otpExpiry }} sec</p>
       </div>
       <h3>Please enter correct OTP</h3>
       <div class="mb-3">
@@ -17,7 +19,8 @@
           required>
       </div>
       <div class="mb-3">
-        <button type="button" (click)="processOTP()" class="btn btn-dark">Submit OTP</button>
+        <button type="button" (click)="processOTP()" mat-raised-button>Submit OTP</button>
+        <p *ngIf="otpError" class="otp-invalid">Invalid OTP</p>
       </div>
 
   </form>

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Kaushan+Script&family=Montez&family=Montserrat:ital,wght@0,100;0,200;0,300;0,700;1,100&family=Poiret+One&display=swap');
+
+// Breakpoints
+$breakpoint-sm: 320;
+$breakpoint-md: 640;
+$breakpoint-lg: 960;
+$breakpoint-xlg: 1280;
+
+//Fonts
+$global_font: 'Montserrat', sans-serif;
+
+// Extra Fonts
+$caveat-font: 'Caveat Brush', cursive;
+$kaushan-font: 'Kaushan Script', cursive;
+$montez-font: 'Montez', cursive;
+$poiret-font: 'Poiret One', cursive;
+
+// Other
+$global_step: 8px;
+
+// Colors
+$circle-fill: #403c46;
+$font-dark: #5a5561;
+// $app-bg: #e3dbef;
+$app-bg: #f7f3ff;

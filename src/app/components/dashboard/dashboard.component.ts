@@ -29,8 +29,11 @@ export class DashboardComponent implements OnInit {
   public pinCode: FormControl;
   public ageLimit: FormControl;
   public dose: FormControl;
+  public slot: FormControl;
 
   public interval: any;
+  public result: string;
+  public isAutomating: boolean;
 
   constructor(
     private userService: UserService,
@@ -46,10 +49,13 @@ export class DashboardComponent implements OnInit {
     this.pinCode = new FormControl();
     this.dose = new FormControl(1);
     this.ageLimit = new FormControl('18');
+    this.slot = new FormControl(1);
 
     this.form = new FormGroup({
       pincode: this.pinCode,
-      age: this.ageLimit
+      age: this.ageLimit,
+      dose: this.dose,
+      slot: this.slot
     });
 
     this.fetchUsers();
@@ -110,6 +116,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public automateProcess(): void {
+    this.isAutomating = true;
     this.interval = setInterval(() => {
       this.searchCenters();
     }, 1500);
@@ -117,20 +124,23 @@ export class DashboardComponent implements OnInit {
 
   public stopProcess(): void {
     clearInterval(this.interval);
+    this.isAutomating = false;
   }
 
   public prepareAndSubmitAppointmentData(session: Session): void {
     const body = {
       dose: Number(this.dose.value),
       session_id: session.session_id,
-      slot: session.slots[1],
+      slot: session.slots[ this.slot.value ],
       beneficiaries: this.beneficiaries
     }
 
     this.appointmentService.submitForAppointment(body).subscribe(result => {
       console.log(result);
       window.alert(result.appointment_confirmation_no);
+      this.result = `Appointment Ref. No: ${result.appointment_confirmation_no}`;
       clearInterval(this.interval);
+      this.isAutomating = false;
     }, err => {
       console.log(err);
     });

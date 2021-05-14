@@ -1,0 +1,18 @@
+$breakpoints: (
+  mobile: $breakpoint-sm * 1px,
+  tablet: $breakpoint-md * 1px,
+  small-desktop: $breakpoint-lg * 1px,
+  large-desktop: $breakpoint-xlg * 1px
+);
+
+@function get-breakpoints($target) {
+  $breakpoint: map_get($breakpoints, $target);
+
+  @return $breakpoint;
+}
+
+@mixin if-wider-than($target) {
+  @media screen and (min-width: get-breakpoints($target)) {
+    @content;
+  }
+}

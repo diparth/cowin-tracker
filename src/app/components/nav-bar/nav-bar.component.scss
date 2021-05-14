@@ -1,7 +1,14 @@
+@import "utils";
+
 .nav-bar {
   padding: 12px 24px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+
+  @include if-wider-than('tablet') {
+    flex-direction: row;
+  }
 }
 
 .counter {

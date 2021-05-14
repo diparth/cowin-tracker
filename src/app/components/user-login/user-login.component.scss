@@ -3,3 +3,23 @@ section {
   margin: auto;
   padding: 32px;
 }
+
+.feedback {
+  width: 64px;
+  text-align: center;
+  padding: 4px;
+  background-color: #007e00;
+  color: white;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.otp-invalid {
+  width: 116px;
+  text-align: center;
+  padding: 4px;
+  background-color: #bb0f0f;
+  color: white;
+  border-radius: 4px;
+  margin-top: 8px;
+}

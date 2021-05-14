@@ -1,1 +1,3 @@
-export const API_BASE_URL = "https://cdn-api.co-vin.in/api";
+import { environment } from "src/environments/environment";
+
+export const API_BASE_URL = environment.base_url;

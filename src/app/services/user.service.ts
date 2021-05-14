@@ -14,6 +14,6 @@ export class UserService {
   public getBeneficiaries(): Observable<any> {
     const headers = new HttpHeaders({ 'Authorization': this.authService.accessToken });
 
-    return this.http.get(`${API_BASE_URL}/v2/appointment/beneficiaries`, { headers });
+    return this.http.get(`${API_BASE_URL}/api/v2/appointment/beneficiaries`, { headers });
   }
 }

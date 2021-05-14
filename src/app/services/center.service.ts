@@ -15,6 +15,6 @@ export class CenterService {
     const headers = new HttpHeaders({ 'Authorization': this.authService.accessToken });
 
     // Date format: DD-MM-YYYY
-    return this.http.get(`${API_BASE_URL}/v2/appointment/sessions/calendarByPin?pincode=${body.pincode}&date=${body.date}`, { headers })
+    return this.http.get(`${API_BASE_URL}/api/v2/appointment/sessions/calendarByPin?pincode=${body.pincode}&date=${body.date}`, { headers })
   }
 }

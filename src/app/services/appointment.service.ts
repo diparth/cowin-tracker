@@ -14,6 +14,6 @@ export class AppointmentService {
   public submitForAppointment(body: any): Observable<any> {
     const headers = new HttpHeaders({ 'Authorization': this.authService.accessToken });
 
-    return this.http.post(`${API_BASE_URL}/v2/appointment/schedule`, body, { headers })
+    return this.http.post(`${API_BASE_URL}/api/v2/appointment/schedule`, body, { headers })
   }
 }

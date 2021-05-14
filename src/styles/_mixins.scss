@@ -1,0 +1,13 @@
+@mixin set-center-body() {
+  margin: 0 auto;
+  //max-width: 1280px;
+  max-width: 80%;
+}
+
+@function step($n) {
+  @return $n * $global_step;
+}
+
+@function getHighContrast() {
+  @return $dp-blue1;
+}
