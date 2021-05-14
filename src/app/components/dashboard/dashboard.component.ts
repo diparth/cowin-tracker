@@ -53,14 +53,13 @@ export class DashboardComponent implements OnInit {
     this.dose = new FormControl(1);
     this.ageLimit = new FormControl('18');
     this.slot = new FormControl(1);
-    this.captcha = new FormControl(1);
+    this.captcha = new FormControl('');
 
     this.form = new FormGroup({
       pincode: this.pinCode,
       age: this.ageLimit,
       dose: this.dose,
-      slot: this.slot,
-      captcha: this.captcha
+      slot: this.slot
     });
 
     this.fetchUsers();
@@ -110,8 +109,8 @@ export class DashboardComponent implements OnInit {
             this.selectedSession = session;
 
             if (session.available_capacity > this.beneficiaries.length) {
-              // this.prepareAndSubmitAppointmentData(session);
               this.loadCaptchaAndDialog();
+              // this.prepareAndSubmitAppointmentData(session);
               clearInterval(this.interval);
               this.isAutomating = false;
             }
@@ -141,6 +140,7 @@ export class DashboardComponent implements OnInit {
     this.appointmentService.loadCaptcha().subscribe(result => {
       this.hasCaptcha = true;
       this.captchaElem.nativeElement.innerHTML = result.captcha;
+      this.form.addControl('captcha', this.captcha);
     });
   }
 
@@ -149,9 +149,9 @@ export class DashboardComponent implements OnInit {
   }
 
   public prepareAndSubmitAppointmentData(session: Session): void {
-    if (this.captcha.value == '') {
-      const cptch = document.getElementById('captcha');
-      cptch.focus();
+    let myCaptcha: HTMLElement | any = document.getElementById('captcha');;
+    if (myCaptcha.value == '') {
+      myCaptcha.focus();
 
       return;
     }
@@ -161,7 +161,7 @@ export class DashboardComponent implements OnInit {
       dose: Number(this.dose.value),
       session_id: session.session_id,
       slot: session.slots[ this.slot.value ],
-      captcha: this.captcha.value,
+      captcha: myCaptcha.value,
       beneficiaries: this.beneficiaries
     }
 

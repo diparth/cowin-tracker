@@ -67,6 +67,13 @@ export class UserLoginComponent implements OnInit {
   }
 
   public processOTP(): void {
+    if (this.mobileFC.value == '') {
+      const el: HTMLElement = document.getElementById('otp');
+      el.focus();
+
+      return;
+    }
+
     const otp = sha256(this.otpFC.value.toString());
 
     this.authService.loginWithOTP({ otp, txnId: this.txnId }).subscribe(result => {
