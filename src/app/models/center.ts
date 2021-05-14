@@ -16,6 +16,7 @@ export interface Center {
 
 export interface Session {
   name?: string;
+  center_id?: number;
   session_id: string;
   date: string;
   available_capacity: number;

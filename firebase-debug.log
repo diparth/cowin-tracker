@@ -1,0 +1,123 @@
+[debug] [2021-05-14T16:11:08.447Z] ----------------------------------------------------------------------
+[debug] [2021-05-14T16:11:08.448Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2021-05-14T16:11:08.448Z] CLI Version:   9.10.0
+[debug] [2021-05-14T16:11:08.448Z] Platform:      darwin
+[debug] [2021-05-14T16:11:08.449Z] Node Version:  v13.12.0
+[debug] [2021-05-14T16:11:08.449Z] Time:          Fri May 14 2021 21:41:08 GMT+0530 (India Standard Time)
+[debug] [2021-05-14T16:11:08.449Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-05-14T16:11:08.451Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-05-14T16:11:08.467Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-05-14T16:11:08.467Z] > authorizing via signed-in user (dpate168@nyit.edu)
+[debug] [2021-05-14T16:11:08.468Z] [iam] checking project diparth-cowin for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2021-05-14T16:11:08.469Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-05-14T16:11:08.469Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-05-14T16:11:08.783Z] <<< HTTP RESPONSE 200 {"date":"Fri, 14 May 2021 16:11:08 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-05-14T16:11:08.842Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/diparth-cowin:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
+[debug] [2021-05-14T16:11:09.580Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-05-14T16:11:09.581Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2021-05-14T16:11:10.431Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 14 May 2021 16:11:10 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1327","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-05-14T16:11:10.432Z] > refreshing access token with scopes: []
+[debug] [2021-05-14T16:11:10.432Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-05-14T16:11:10.772Z] <<< HTTP RESPONSE 200 {"date":"Fri, 14 May 2021 16:11:10 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-05-14T16:11:10.830Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/diparth-cowin [none]
+[debug] [2021-05-14T16:11:11.294Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/diparth-cowin 200
+[debug] [2021-05-14T16:11:11.294Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/diparth-cowin {"projectId":"diparth-cowin","projectNumber":"212372612052","displayName":"diparth-cowin","name":"projects/diparth-cowin","resources":{"hostingSite":"diparth-cowin","realtimeDatabaseInstance":"diparth-cowin-default-rtdb"},"state":"ACTIVE"}
+[debug] [2021-05-14T16:11:11.294Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/diparth-cowin [none]
+[debug] [2021-05-14T16:11:11.866Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/diparth-cowin 200
+[debug] [2021-05-14T16:11:11.866Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/diparth-cowin {"projectId":"diparth-cowin","projectNumber":"212372612052","displayName":"diparth-cowin","name":"projects/diparth-cowin","resources":{"hostingSite":"diparth-cowin","realtimeDatabaseInstance":"diparth-cowin-default-rtdb"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'diparth-cowin'...
+[info] 
+[info] i  deploying database, hosting 
+[info] i  database: checking rules syntax... 
+[debug] [2021-05-14T16:11:11.871Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-05-14T16:11:11.871Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-05-14T16:11:12.157Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Fri, 14 May 2021 16:11:12 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-05-14T16:11:12.214Z] >>> HTTP REQUEST GET https://firebasedatabase.googleapis.com/v1beta/projects/diparth-cowin/locations/-/instances/diparth-cowin-default-rtdb  
+ 
+[debug] [2021-05-14T16:11:13.018Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 14 May 2021 16:11:13 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-05-14T16:11:13.019Z] >>> HTTP REQUEST PUT https://diparth-cowin-default-rtdb.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    ".read": false,
+    ".write": false
+  }
+}
+[debug] [2021-05-14T16:11:14.424Z] <<< HTTP RESPONSE 200 {"server":"nginx","date":"Fri, 14 May 2021 16:11:14 GMT","content-type":"application/json; charset=utf-8","content-length":"15","connection":"keep-alive","access-control-allow-origin":"*","cache-control":"no-cache","strict-transport-security":"max-age=31556926; includeSubDomains; preload"}
+[info] ✔  database: rules syntax for database diparth-cowin-default-rtdb is valid 
+[debug] [2021-05-14T16:11:14.427Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/diparth-cowin/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-05-14T16:11:16.545Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 14 May 2021 16:11:16 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[diparth-cowin]: beginning deploy... 
+[info] i  hosting[diparth-cowin]: found 8 files in dist/cowin-app 
+[debug] [2021-05-14T16:11:16.578Z] > refreshing access token with scopes: []
+[debug] [2021-05-14T16:11:16.579Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-05-14T16:11:16.580Z] [hosting] hash cache [ZGlzdC9jb3dpbi1hcHA] stored for 8 files
+[debug] [2021-05-14T16:11:16.580Z] [hosting][hash queue][FINAL] {"max":23,"min":5,"avg":9.375,"active":0,"complete":8,"success":8,"errored":0,"retried":0,"total":8,"elapsed":28}
+[debug] [2021-05-14T16:11:17.048Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Fri, 14 May 2021 16:11:17 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-05-14T16:11:17.106Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/sites/diparth-cowin/versions/89c8310d7839de23:populateFiles [none]
+[debug] [2021-05-14T16:11:17.106Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/diparth-cowin/versions/89c8310d7839de23:populateFiles {"files":{"/favicon.ico":"a2aee5309d0b59b9b66384ccc3969a07fab1b320d0bf76f1b25047a051d7f774","/index.html":"c5d966e97ba63453209f5ff19a14dbe9749c65e98d07ae3c3609d75cc9019c28","/runtime.7b63b9fd40098a2e8207.js":"c4aa0a348c0dcf9c6af4b7b3f066d0599bcec97472ed96ab232c8dceb70607cb","/3rdpartylicenses.txt":"f218eb154a3291c8a9b02f101760c0aaebb1b576756e682c7007283b829a94d4","/polyfills.00096ed7d93ed26ee6df.js":"392274cf3b12572bbc29c65f6c1863f18938801875473eb09ab63f9bd0803157","/scripts.c2f277b8d3a32a2ac852.js":"ef1ca86a90e0a0d2cb1280851f92e298b62b6a912aa51e057f79db3d16c603a0","/styles.5ccd3fb1914bdb50535b.css":"c28472ab35e5a79c0f6bd2f2562ef322c1b92c400978f7178e77966ed407ea37","/main.f0b3410b31d4cecaae04.js":"9b72125837373324af23e5901f08b26af6ea7574a2657a63701a94ba9a39cd31"}}
+[debug] [2021-05-14T16:11:19.137Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/sites/diparth-cowin/versions/89c8310d7839de23:populateFiles 200
+[debug] [2021-05-14T16:11:19.137Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/diparth-cowin/versions/89c8310d7839de23:populateFiles {"uploadRequiredHashes":["9b72125837373324af23e5901f08b26af6ea7574a2657a63701a94ba9a39cd31","c5d966e97ba63453209f5ff19a14dbe9749c65e98d07ae3c3609d75cc9019c28"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/diparth-cowin/versions/89c8310d7839de23/files"}
+[debug] [2021-05-14T16:11:19.139Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/diparth-cowin/versions/89c8310d7839de23/files/9b72125837373324af23e5901f08b26af6ea7574a2657a63701a94ba9a39cd31 [none]
+[debug] [2021-05-14T16:11:19.139Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/diparth-cowin/versions/89c8310d7839de23/files/9b72125837373324af23e5901f08b26af6ea7574a2657a63701a94ba9a39cd31 [stream]
+[debug] [2021-05-14T16:11:19.140Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/diparth-cowin/versions/89c8310d7839de23/files/c5d966e97ba63453209f5ff19a14dbe9749c65e98d07ae3c3609d75cc9019c28 [none]
+[debug] [2021-05-14T16:11:19.140Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/diparth-cowin/versions/89c8310d7839de23/files/c5d966e97ba63453209f5ff19a14dbe9749c65e98d07ae3c3609d75cc9019c28 [stream]
+[debug] [2021-05-14T16:11:19.141Z] [hosting][populate queue][FINAL] {"max":2561,"min":2561,"avg":2561,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":2563}
+[debug] [2021-05-14T16:11:19.141Z] [hosting] uploads queued: 2
+[debug] [2021-05-14T16:11:22.207Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/diparth-cowin/versions/89c8310d7839de23/files/c5d966e97ba63453209f5ff19a14dbe9749c65e98d07ae3c3609d75cc9019c28 200
+[debug] [2021-05-14T16:11:22.207Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/diparth-cowin/versions/89c8310d7839de23/files/c5d966e97ba63453209f5ff19a14dbe9749c65e98d07ae3c3609d75cc9019c28 [stream]
+[debug] [2021-05-14T16:11:22.269Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/diparth-cowin/versions/89c8310d7839de23/files/9b72125837373324af23e5901f08b26af6ea7574a2657a63701a94ba9a39cd31 200
+[debug] [2021-05-14T16:11:22.270Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/diparth-cowin/versions/89c8310d7839de23/files/9b72125837373324af23e5901f08b26af6ea7574a2657a63701a94ba9a39cd31 [stream]
+[debug] [2021-05-14T16:11:22.270Z] [hosting][upload queue][FINAL] {"max":3133,"min":3069,"avg":3101,"active":0,"complete":2,"success":2,"errored":0,"retried":0,"total":2,"elapsed":3133}
+[info] ✔  hosting[diparth-cowin]: file upload complete 
+[debug] [2021-05-14T16:11:22.271Z] [hosting] deploy completed after 5725ms
+[info] i  database: releasing rules... 
+[debug] [2021-05-14T16:11:22.470Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-05-14T16:11:22.470Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-05-14T16:11:22.753Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Fri, 14 May 2021 16:11:22 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-05-14T16:11:22.812Z] >>> HTTP REQUEST GET https://firebasedatabase.googleapis.com/v1beta/projects/diparth-cowin/locations/-/instances/diparth-cowin-default-rtdb  
+ 
+[debug] [2021-05-14T16:11:23.339Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 14 May 2021 16:11:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-05-14T16:11:23.340Z] >>> HTTP REQUEST PUT https://diparth-cowin-default-rtdb.firebaseio.com/.settings/rules.json  
+ {
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    ".read": false,
+    ".write": false
+  }
+}
+[debug] [2021-05-14T16:11:24.356Z] <<< HTTP RESPONSE 200 {"server":"nginx","date":"Fri, 14 May 2021 16:11:24 GMT","content-type":"application/json; charset=utf-8","content-length":"15","connection":"keep-alive","access-control-allow-origin":"*","cache-control":"no-cache","strict-transport-security":"max-age=31556926; includeSubDomains; preload"}
+[info] ✔  database: rules for database diparth-cowin-default-rtdb released successfully 
+[debug] [2021-05-14T16:11:24.357Z] [
+  {
+    "config": {
+      "public": "dist/cowin-app",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "diparth-cowin"
+    },
+    "site": "diparth-cowin",
+    "version": "sites/diparth-cowin/versions/89c8310d7839de23"
+  }
+]
+[info] i  hosting[diparth-cowin]: finalizing version... 
+[debug] [2021-05-14T16:11:24.357Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/diparth-cowin/versions/89c8310d7839de23?updateMask=status  
+ {"status":"FINALIZED"}

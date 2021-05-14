@@ -1,7 +1,7 @@
 import { Center, Session } from './../../models/center';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User } from './../../models/user';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
@@ -15,6 +15,7 @@ import { AppointmentService } from 'src/app/services/appointment.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('captcha') captchaElem: ElementRef;
 
   public users: User[] = [];
   public mobile: string;
@@ -30,10 +31,12 @@ export class DashboardComponent implements OnInit {
   public ageLimit: FormControl;
   public dose: FormControl;
   public slot: FormControl;
+  public captcha: FormControl;
 
   public interval: any;
   public result: string;
   public isAutomating: boolean;
+  public hasCaptcha: boolean;
 
   constructor(
     private userService: UserService,
@@ -50,12 +53,14 @@ export class DashboardComponent implements OnInit {
     this.dose = new FormControl(1);
     this.ageLimit = new FormControl('18');
     this.slot = new FormControl(1);
+    this.captcha = new FormControl(1);
 
     this.form = new FormGroup({
       pincode: this.pinCode,
       age: this.ageLimit,
       dose: this.dose,
-      slot: this.slot
+      slot: this.slot,
+      captcha: this.captcha
     });
 
     this.fetchUsers();
@@ -100,10 +105,15 @@ export class DashboardComponent implements OnInit {
         center.sessions.forEach((session: Session) => {
           if (session.min_age_limit == this.ageLimit.value) {
             session.name = center.name;
+            session.center_id = center.center_id;
             this.sessions.push(session);
+            this.selectedSession = session;
 
             if (session.available_capacity > this.beneficiaries.length) {
-              this.prepareAndSubmitAppointmentData(session);
+              // this.prepareAndSubmitAppointmentData(session);
+              this.loadCaptchaAndDialog();
+              clearInterval(this.interval);
+              this.isAutomating = false;
             }
           }
         });
@@ -127,11 +137,31 @@ export class DashboardComponent implements OnInit {
     this.isAutomating = false;
   }
 
+  public loadCaptchaAndDialog(): void {
+    this.appointmentService.loadCaptcha().subscribe(result => {
+      this.hasCaptcha = true;
+      this.captchaElem.nativeElement.innerHTML = result.captcha;
+    });
+  }
+
+  public submit(): void {
+    this.prepareAndSubmitAppointmentData(this.selectedSession);
+  }
+
   public prepareAndSubmitAppointmentData(session: Session): void {
+    if (this.captcha.value == '') {
+      const cptch = document.getElementById('captcha');
+      cptch.focus();
+
+      return;
+    }
+
     const body = {
+      center_id: session.center_id,
       dose: Number(this.dose.value),
       session_id: session.session_id,
       slot: session.slots[ this.slot.value ],
+      captcha: this.captcha.value,
       beneficiaries: this.beneficiaries
     }
 
@@ -139,8 +169,7 @@ export class DashboardComponent implements OnInit {
       console.log(result);
       window.alert(result.appointment_confirmation_no);
       this.result = `Appointment Ref. No: ${result.appointment_confirmation_no}`;
-      clearInterval(this.interval);
-      this.isAutomating = false;
+
     }, err => {
       console.log(err);
     });

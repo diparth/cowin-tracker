@@ -16,4 +16,10 @@ export class AppointmentService {
 
     return this.http.post(`${API_BASE_URL}/api/v2/appointment/schedule`, body, { headers })
   }
+
+  public loadCaptcha(): Observable<any> {
+    const headers = new HttpHeaders({ 'Authorization': this.authService.accessToken });
+
+    return this.http.post(`${API_BASE_URL}/api/v2/auth/getRecaptcha`, {}, { headers });
+  }
 }
