@@ -76,7 +76,7 @@
   <div class="result">
     <div>
       <div *ngIf="!result && isAutomating">
-        <h5>Tracking in progress.. </h5>
+        <h5>Tracking in progress.. {{ trackCount }} </h5>
         <div class="loader"></div>
       </div>
       <h5 *ngIf="result">{{ result }}</h5>

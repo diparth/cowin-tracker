@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
   public captcha: FormControl;
 
   public interval: any;
+  public trackCount: number = 0;
   public result: string;
   public isAutomating: boolean;
   public hasCaptcha: boolean;
@@ -100,6 +101,8 @@ export class DashboardComponent implements OnInit {
     this.centerService.getCentersByCalanderPin(body).subscribe(result => {
       this.centers = result.centers;
       this.sessions = [];
+      this.trackCount++;
+
       this.centers.forEach((center: Center) => {
         center.sessions.forEach((session: Session) => {
           if (session.min_age_limit == this.ageLimit.value) {
@@ -110,9 +113,7 @@ export class DashboardComponent implements OnInit {
 
             if (session.available_capacity > this.beneficiaries.length) {
               this.loadCaptchaAndDialog();
-              // this.prepareAndSubmitAppointmentData(session);
-              clearInterval(this.interval);
-              this.isAutomating = false;
+              this.stopProcess();
             }
           }
         });
@@ -134,6 +135,7 @@ export class DashboardComponent implements OnInit {
   public stopProcess(): void {
     clearInterval(this.interval);
     this.isAutomating = false;
+    this.trackCount = 0;
   }
 
   public loadCaptchaAndDialog(): void {
@@ -166,7 +168,6 @@ export class DashboardComponent implements OnInit {
     }
 
     this.appointmentService.submitForAppointment(body).subscribe(result => {
-      console.log(result);
       window.alert(result.appointment_confirmation_no);
       this.result = `Appointment Ref. No: ${result.appointment_confirmation_no}`;
 
