@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public centers: Center[] = [];
   public sessions: Session[] = [];
   public selectedSession: Session;
+  public sessionFound: boolean = false;
 
   public form: FormGroup;
   public pinCode: FormControl;
@@ -115,9 +116,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
             session.name = center.name;
             session.center_id = center.center_id;
             this.sessions.push(session);
-            this.selectedSession = session;
 
-            if (session.available_capacity > this.beneficiaries.length) {
+            if (session.available_capacity > this.beneficiaries.length && !this.sessionFound) {
+              this.selectedSession = session;
+              this.sessionFound = true;
               this.loadCaptchaAndDialog();
               this.stopProcess();
             }
