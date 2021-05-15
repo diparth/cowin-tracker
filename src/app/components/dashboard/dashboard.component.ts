@@ -137,7 +137,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.isAutomating = true;
     this.interval = setInterval(() => {
       this.searchCenters();
-    }, 1500);
+    }, 3000);
   }
 
   public stopProcess(): void {
