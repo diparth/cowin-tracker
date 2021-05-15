@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit {
             this.sessions.push(session);
             this.selectedSession = session;
 
-            if (session.available_capacity < this.beneficiaries.length) {
+            if (session.available_capacity > this.beneficiaries.length) {
               this.loadCaptchaAndDialog();
               this.stopProcess();
             }
