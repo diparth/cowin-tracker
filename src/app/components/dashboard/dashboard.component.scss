@@ -5,6 +5,14 @@ section {
   margin-bottom: 80px;
 }
 
+.header h4 {
+  font-size: 20px;
+
+  @include if-wider-than('tablet') {
+    font-size: 26px;
+  }
+}
+
 .steps {
   text-align: center;
   margin-top: 24px;
@@ -138,10 +146,20 @@ section {
 }
 
 .captcha-box {
+  height: 4px;
   margin-top: 16px;
   border: 1px solid lightgray;
   border-radius: 10px;
   padding: 14px;
+  overflow: hidden;
+  opacity: 0;
+  transition: height 0.5s, overflow 0.5s, opacity 0.5s;
+
+  &.expand {
+    height: auto;
+    overflow: visible;
+    opacity: 1;
+  }
 
   button {
     margin-top: 10px;

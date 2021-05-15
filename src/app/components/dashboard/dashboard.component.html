@@ -7,7 +7,7 @@
   <div class="cards">
     <div *ngFor="let user of users" class="user-card">
       <p class="name">{{ user.name }}</p>
-      <p class="name">Dose 1: {{ user.dose1_date }}</p>
+      <p class="name">Dose 1: {{ user.dose1_date }} | {{ user.vaccine }}</p>
       <p class="name">Dose 2: {{ user.dose2_date }}</p>
       <input type="checkbox" [value]="user" (change)="onCheckChange(user, $event)">
     </div>
@@ -19,19 +19,23 @@
       <label class="form-control-label" for="pincode">Pincode</label>
       <input type="text" id="pincode" placeholder="Enter your preferred pincode." class="form-control"
         [formControl]="pinCode">
+
       <label class="form-control-label" for="dose">Dose Number</label>
       <select type="text" id="dose" placeholder="Dose number" class="form-control" [formControl]="dose">
         <option>1</option>
         <option>2</option>
       </select>
+
       <div class="form-check">
         <input class="form-check-input" type="radio" name="age" id="18" value="18" [formControl]="ageLimit" checked>
         <label class="form-check-label" for="18">18+</label>
       </div>
+
       <div class="form-check">
         <input class="form-check-input" type="radio" name="age" id="45" value="45" [formControl]="ageLimit">
         <label class="form-check-label" for="45">45+</label>
       </div>
+
       <label class="form-control-label" for="slot">Desired Slot Number</label>
       <select type="text" id="slot" placeholder="Slot number" class="form-control" [formControl]="slot">
         <option value="0">1: 9AM - 11AM</option>
@@ -66,13 +70,19 @@
   </div>
 
   <h4 *ngIf="isAutomating || result" class="steps">Step 4: Result</h4>
-  <div class="captcha-box" *ngIf="hasCaptcha">
+  <div class="captcha-box" [ngClass]="{ 'expand': hasCaptcha }">
+    <div class="guide">
+      <h5>Appointment Available</h5>
+      <p>Please enter captcha and press Schedule.</p>
+    </div>
+
     <div class="captcha" #captcha></div>
     <label class="form-control-label" for="captcha">Captcha</label>
     <input type="text" id="captcha" placeholder="Enter the captcha." class="form-control"
       [formControl]="captcha">
     <button mat-raised-button color="primary" (click)="submit()">Schedule</button>
   </div>
+
   <div class="result">
     <div>
       <div *ngIf="!result && isAutomating">

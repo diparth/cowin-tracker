@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
 
   public users: User[] = [];
   public mobile: string;
+  public usersVaccine: string;
   public selectedUsers: User[] = [];
   public beneficiaries: string[] = [];
 
@@ -90,12 +91,15 @@ export class DashboardComponent implements OnInit {
       this.selectedUsers.splice(index, 1);
       this.beneficiaries.splice(index, 1);
     }
+
+    this.usersVaccine = this.selectedUsers.length > 0 ? this.selectedUsers[0].vaccine : '';
   }
 
   public searchCenters(): void {
     const body = {
       pincode: this.pinCode.value,
-      date: this.datePipe.transform(new Date(), 'dd-MM-yyyy')
+      date: this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+      vaccine: this.usersVaccine
     };
 
     this.centerService.getCentersByCalanderPin(body).subscribe(result => {
