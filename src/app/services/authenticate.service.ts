@@ -51,12 +51,13 @@ export class AuthenticateService {
     localStorage.removeItem('logout_time');
     localStorage.removeItem('mobile');
 
-    const successToneElem: HTMLElement | any = document.getElementById('logoutTone');
-    successToneElem.play();
-
     this.logoutCounter.next(0);
     this.router.navigate(['login']);
-    window.location.reload();
+
+    const logoutToneElem: HTMLElement | any = document.getElementById('logoutTone');
+    logoutToneElem.play().then(() => {
+      window.location.reload();
+    });
   }
 
   public get accessToken(): string {

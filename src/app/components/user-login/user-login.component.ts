@@ -1,5 +1,5 @@
 import { LocalStorageService } from './../../services/local-storage.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { sha256 } from 'js-sha256';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.scss']
 })
-export class UserLoginComponent implements OnInit {
+export class UserLoginComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
   public mobileFC: FormControl;
@@ -33,6 +33,10 @@ export class UserLoginComponent implements OnInit {
       mobile: this.mobileFC,
       otp: this.otpFC
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.resetOTPExpiry();
   }
 
   public processMobile(): void {
@@ -60,10 +64,15 @@ export class UserLoginComponent implements OnInit {
       this.otpExpiry--;
 
       if (this.otpExpiry == 0) {
-        this.otpExpiry = 180;
-        clearInterval(this.expiryInterval);
+        this.resetOTPExpiry();
+        window.location.reload();
       }
     }, 1000);
+  }
+
+  public resetOTPExpiry(): void {
+    this.otpExpiry = 180;
+    clearInterval(this.expiryInterval);
   }
 
   public processOTP(): void {
@@ -78,7 +87,8 @@ export class UserLoginComponent implements OnInit {
 
     this.authService.loginWithOTP({ otp, txnId: this.txnId }).subscribe(result => {
       this.authService.setUpLocalStore({ ...result });
-      this.router.navigate([ 'dashboard' ]);
+      this.resetOTPExpiry();
+      this.router.navigate(['dashboard']);
     }, err => {
       this.otpError = true;
       console.log(err);
