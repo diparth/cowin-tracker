@@ -7,7 +7,7 @@
   <div class="cards">
     <div *ngFor="let user of users" class="user-card">
       <p class="name">{{ user.name }}</p>
-      <p class="name">Dose 1: {{ user.dose1_date }} | {{ user.vaccine }}</p>
+      <p class="name">Dose 1: {{ user.dose1_date }} <span *ngIf="user.vaccine !== ''">| {{ user.vaccine }}</span></p>
       <p class="name">Dose 2: {{ user.dose2_date }}</p>
       <input type="checkbox" [value]="user" (change)="onCheckChange(user, $event)">
     </div>
