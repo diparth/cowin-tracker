@@ -53,6 +53,7 @@ export class AuthenticateService {
 
     this.logoutCounter.next(0);
     this.router.navigate(['login']);
+    window.location.reload();
   }
 
   public get accessToken(): string {

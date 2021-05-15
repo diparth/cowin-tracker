@@ -1,7 +1,7 @@
 import { Center, Session } from './../../models/center';
 import { FormGroup, FormControl } from '@angular/forms';
 import { User } from './../../models/user';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
@@ -14,7 +14,7 @@ import { AppointmentService } from 'src/app/services/appointment.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   @ViewChild('captcha') captchaElem: ElementRef;
 
   public users: User[] = [];
@@ -63,6 +63,10 @@ export class DashboardComponent implements OnInit {
     });
 
     this.fetchUsers();
+  }
+
+  public ngOnDestroy(): void {
+    this.stopProcess();
   }
 
   public fetchUsers(): void {
