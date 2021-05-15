@@ -15,7 +15,7 @@ export class CenterService {
   public getCentersByCalanderPin(body: any): Observable<any> {
     const headers = new HttpHeaders({ 'Authorization': this.authService.accessToken });
 
-    if (!Utils.isNullOrUndefined(body.vaccine)) {
+    if (!Utils.isNullOrUndefined(body.vaccine) && body.vaccine !== '') {
       return this.http.get(`${API_BASE_URL}/api/v2/appointment/sessions/calendarByPin?pincode=${body.pincode}&date=${body.date}&vaccine=${body.vaccine}`, { headers });
     }
 

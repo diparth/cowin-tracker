@@ -32,7 +32,6 @@ export class DashboardComponent implements OnInit {
   public ageLimit: FormControl;
   public dose: FormControl;
   public slot: FormControl;
-  public captcha: FormControl;
 
   public interval: any;
   public trackCount: number = 0;
@@ -55,7 +54,6 @@ export class DashboardComponent implements OnInit {
     this.dose = new FormControl(1);
     this.ageLimit = new FormControl('18');
     this.slot = new FormControl(1);
-    this.captcha = new FormControl('');
 
     this.form = new FormGroup({
       pincode: this.pinCode,
@@ -115,7 +113,7 @@ export class DashboardComponent implements OnInit {
             this.sessions.push(session);
             this.selectedSession = session;
 
-            if (session.available_capacity > this.beneficiaries.length) {
+            if (session.available_capacity < this.beneficiaries.length) {
               this.loadCaptchaAndDialog();
               this.stopProcess();
             }
@@ -146,7 +144,9 @@ export class DashboardComponent implements OnInit {
     this.appointmentService.loadCaptcha().subscribe(result => {
       this.hasCaptcha = true;
       this.captchaElem.nativeElement.innerHTML = result.captcha;
-      this.form.addControl('captcha', this.captcha);
+
+      const successToneElem: HTMLElement | any = document.getElementById('successTone');
+      successToneElem.play();
     });
   }
 
