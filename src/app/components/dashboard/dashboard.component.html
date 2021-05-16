@@ -4,12 +4,12 @@
   </div>
 
   <h4 class="steps">Step 1: Select Users</h4>
-  <div class="cards">
-    <div *ngFor="let user of users" class="user-card">
+  <div class="cards users-box" id="usersCard">
+    <div *ngFor="let user of users; index as index" class="user-card">
       <p class="name">{{ user.name }}</p>
       <p class="name">Dose 1: {{ user.dose1_date }} <span *ngIf="user.vaccine !== ''">| {{ user.vaccine }}</span></p>
       <p class="name">Dose 2: {{ user.dose2_date }}</p>
-      <input type="checkbox" [value]="user" (change)="onCheckChange(user, $event)">
+      <input type="checkbox" class="form-check-input" [value]="user" id="user{{ index }}" (change)="onUserCheckChange(user, $event)">
     </div>
   </div>
 
@@ -48,7 +48,7 @@
     </div>
 
     <div class="cards centers">
-      <div *ngFor="let session of sessions" class="user-card">
+      <div *ngFor="let session of sessions; index as index" class="user-card">
         <p>{{ session.name }}</p>
         <p>{{ session.date }}</p>
         <p>Age: {{ session.min_age_limit }} | {{ session.vaccine }}</p>
@@ -57,9 +57,10 @@
           'mid': session.available_capacity <= 10 && session.available_capacity > 0,
           'free': session.available_capacity > 10
         }">Capacity: {{ session.available_capacity }}</p>
-        <p>{{ session.slots | json }}</p>
+        <p class="session-slots">{{ session.slots | json }}</p>
+        <input class="form-check-input" type="radio" name="session" id="session{{index}}" (change)="onSessionSelection(session)" [checked]="selectedSession && selectedSession.session_id == session.session_id">
       </div>
-      <div *ngIf="!sessions.length" class="user-card">No Sessions</div>
+      <div *ngIf="!sessions.length" class="user-card no-session">No Sessions</div>
     </div>
   </div>
 
@@ -89,7 +90,7 @@
         <div class="loader"></div>
       </div>
       <h5 *ngIf="result">{{ result }}</h5>
-      <!-- <button *ngIf="result" mat-raised-button color="primary" (click)="download()">Download</button> -->
+      <button *ngIf="result" mat-raised-button color="primary" (click)="download()">Download Slip</button>
     </div>
   </div>
 </section>

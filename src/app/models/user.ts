@@ -1,5 +1,5 @@
 export class User {
-  public appointments: any[];
+  public appointments: Appointment[];
   public beneficiary_reference_id: string;
   public birth_year: string;
   public comorbidity_ind: string;
@@ -18,4 +18,19 @@ export class User {
       this[key] = data[key];
     });
   }
+}
+
+export interface Appointment {
+  appointment_id: string;
+  block_name: string;
+  center_id: number;
+  date: string;
+  district_name: string;
+  dose: number;
+  from: string;
+  name: string;
+  session_id: string;
+  slot: string;
+  state_name: string;
+  to: string;
 }

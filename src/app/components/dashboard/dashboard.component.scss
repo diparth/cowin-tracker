@@ -35,7 +35,8 @@ section {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
+  align-items: flex-start;
   padding: 10px 8px;
   border: 1px solid lightgray;
   border-radius: 8px;
@@ -45,12 +46,28 @@ section {
   }
 }
 
+.users-box {
+  &:focus-within {
+    outline: auto;
+    outline-color: #86b7fe;
+  }
+}
+
+.session-slots {
+  font-size: 12px;
+}
+
 .user-card {
   width: 300px;
   border: 1px solid lightgray;
   border-radius: 8px;
   padding: 4px 8px;
   margin-bottom: 8px;
+  margin-right: 8px;
+}
+
+.no-session {
+  border: 3px solid red;
 }
 
 .filters {
@@ -121,8 +138,8 @@ section {
   border-top: 16px solid #3498db;
   width: 100px;
   height: 100px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+  -webkit-animation: spin 3s linear infinite; /* Safari */
+  animation: spin 3s linear infinite;
   margin: auto;
 }
 

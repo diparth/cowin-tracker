@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public interval: any;
   public trackCount: number = 0;
   public result: string;
+  public newAppointmentId: string;
   public isAutomating: boolean;
   public hasCaptcha: boolean;
 
@@ -85,7 +86,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.users = data.map(item => new User(item));
   }
 
-  public onCheckChange(data: User, event: any): void {
+  public onUserCheckChange(data: User, event: any): void {
     if (event.target.checked) {
       this.selectedUsers.push(data);
       this.beneficiaries.push(data.beneficiary_reference_id);
@@ -98,7 +99,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.usersVaccine = this.selectedUsers.length > 0 ? this.selectedUsers[0].vaccine : '';
   }
 
+  public onSessionSelection(data: Session): void {
+    this.selectedSession = data;
+  }
+
   public searchCenters(): void {
+    if (this.selectedUsers.length < 1) {
+      const elem = document.getElementById('user0');
+      elem.focus();
+
+      return;
+    }
+
+    this.searchSessions();
+  }
+
+  public searchSessions(): void {
     const body = {
       pincode: this.pinCode.value,
       date: this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
@@ -135,9 +151,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public automateProcess(): void {
     this.isAutomating = true;
+    this.trackCount = 0;
     this.interval = setInterval(() => {
       this.searchCenters();
-    }, 3000);
+    }, 3300);
   }
 
   public stopProcess(): void {
@@ -150,10 +167,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.appointmentService.loadCaptcha().subscribe(result => {
       this.hasCaptcha = true;
       this.captchaElem.nativeElement.innerHTML = result.captcha;
-
-      const successToneElem: HTMLElement | any = document.getElementById('successTone');
-      successToneElem.play();
     });
+
+    const successToneElem: HTMLElement | any = document.getElementById('successTone');
+    successToneElem.play();
   }
 
   public submit(): void {
@@ -172,17 +189,25 @@ export class DashboardComponent implements OnInit, OnDestroy {
       center_id: session.center_id,
       dose: Number(this.dose.value),
       session_id: session.session_id,
-      slot: session.slots[ this.slot.value ],
+      slot: session.slots[this.slot.value],
       captcha: myCaptcha.value,
       beneficiaries: this.beneficiaries
     }
 
     this.appointmentService.submitForAppointment(body).subscribe(result => {
-      window.alert(result.appointment_confirmation_no);
-      this.result = `Appointment Ref. No: ${result.appointment_confirmation_no}`;
+      // window.alert(result.appointment_confirmation_no);
+      this.newAppointmentId = result.appointment_confirmation_no;
+      this.result = `Appointment Ref. No: ${this.newAppointmentId}`;
 
     }, err => {
       console.log(err);
+    });
+  }
+
+  public download(): void {
+    this.appointmentService.downloadAppointmentSlip(this.newAppointmentId).subscribe(result => {
+      const file = URL.createObjectURL(result);
+      window.open(file, '_blank');
     });
   }
 }

@@ -23,7 +23,11 @@ export class UserLoginComponent implements OnInit, OnDestroy {
 
   private txnId: string;
 
-  constructor(private authService: AuthenticateService, private router: Router, private localStorageService: LocalStorageService) { }
+  constructor(private authService: AuthenticateService, private router: Router, private localStorageService: LocalStorageService) {
+    if (this.authService.isLoggedIn) {
+      this.router.navigate([ 'dashboard' ]);
+    }
+  }
 
   ngOnInit(): void {
     this.mobileFC = new FormControl('');
