@@ -201,6 +201,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     }, err => {
       console.log(err);
+      window.alert(`Error Occured! ${JSON.stringify(err)}`);
     });
   }
 
