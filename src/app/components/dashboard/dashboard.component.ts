@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public ageLimit: FormControl;
   public dose: FormControl;
   public slot: FormControl;
+  public date: FormControl;
 
   public interval: any;
   public trackCount: number = 0;
@@ -40,6 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public newAppointmentId: string;
   public isAutomating: boolean;
   public hasCaptcha: boolean;
+  public requestedDate: string;
 
   constructor(
     private userService: UserService,
@@ -52,19 +54,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.mobile = this.localStorageService.getFromLocalStorage('mobile');
 
+    const today = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+      this.requestedDate = this.datePipe.transform(today, 'dd-MM-yyyy');
+
     this.pinCode = new FormControl();
     this.dose = new FormControl(1);
     this.ageLimit = new FormControl('18');
     this.slot = new FormControl(1);
+    this.date = new FormControl(today);
 
     this.form = new FormGroup({
       pincode: this.pinCode,
       age: this.ageLimit,
       dose: this.dose,
-      slot: this.slot
+      slot: this.slot,
+      date: this.date
     });
 
     this.fetchUsers();
+
+    this.date.valueChanges.subscribe(val => {
+      this.requestedDate = this.datePipe.transform(val, 'dd-MM-yyyy');
+    });
   }
 
   public ngOnDestroy(): void {
@@ -112,12 +123,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     this.searchSessions();
+    this.hasCaptcha = false;
   }
 
   public searchSessions(): void {
     const body = {
       pincode: this.pinCode.value,
-      date: this.datePipe.transform(new Date(), 'dd-MM-yyyy'),
+      date: this.requestedDate,
       vaccine: this.usersVaccine
     };
 
@@ -154,7 +166,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.trackCount = 0;
     this.interval = setInterval(() => {
       this.searchCenters();
-    }, 3300);
+    }, 3250);
   }
 
   public stopProcess(): void {

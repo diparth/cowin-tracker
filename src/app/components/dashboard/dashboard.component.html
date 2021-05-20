@@ -36,6 +36,9 @@
         <label class="form-check-label" for="45">45+</label>
       </div>
 
+      <label class="form-control-label" for="date">Date</label>
+      <input class="form-control" type="date" id="date" name="date" [formControl]="date">
+
       <label class="form-control-label" for="slot">Desired Slot Number</label>
       <select type="text" id="slot" placeholder="Slot number" class="form-control" [formControl]="slot">
         <option value="0">1: 9AM - 11AM</option>
@@ -70,7 +73,7 @@
     <button mat-raised-button (click)="stopProcess()">Stop Tracker</button>
   </div>
 
-  <h4 *ngIf="isAutomating || result" class="steps">Step 4: Result</h4>
+  <h4 *ngIf="result && hasCaptcha" class="steps">Step 4: Result</h4>
   <div class="captcha-box" [ngClass]="{ 'expand': hasCaptcha }">
     <div class="guide">
       <h5>Appointment Available</h5>
