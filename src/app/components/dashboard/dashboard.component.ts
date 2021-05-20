@@ -164,6 +164,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public automateProcess(): void {
     this.isAutomating = true;
     this.trackCount = 0;
+    this.searchCenters();
+
     this.interval = setInterval(() => {
       this.searchCenters();
     }, 3250);
@@ -172,6 +174,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public stopProcess(): void {
     clearInterval(this.interval);
     this.isAutomating = false;
+    this.hasCaptcha = false;
     this.trackCount = 0;
   }
 

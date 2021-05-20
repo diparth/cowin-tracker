@@ -73,7 +73,9 @@ export class AuthenticateService {
   }
 
   public get isLoggedIn(): boolean {
-    return !Utils.isNullOrUndefined(this.accessToken) && !Utils.isNullOrUndefined(this.txnId);
+    const isloggedin = !Utils.isNullOrUndefined(this.accessToken) && !Utils.isNullOrUndefined(this.txnId);
+
+    return isloggedin;
   }
 
   private get loginCreds(): any {
