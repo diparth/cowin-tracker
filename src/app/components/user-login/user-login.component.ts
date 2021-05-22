@@ -69,7 +69,9 @@ export class UserLoginComponent implements OnInit, OnDestroy {
 
       if (this.otpExpiry == 0) {
         this.resetOTPExpiry();
-        window.location.reload();
+        this.router.navigate(['login']).then(() => {
+          window.location.reload();
+        });
       }
     }, 1000);
   }

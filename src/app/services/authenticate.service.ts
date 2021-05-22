@@ -46,10 +46,7 @@ export class AuthenticateService {
   }
 
   public logout(): void {
-    localStorage.removeItem('login_creds');
-    localStorage.removeItem('user_details');
-    localStorage.removeItem('logout_time');
-    localStorage.removeItem('mobile');
+    localStorage.clear();
 
     this.logoutCounter.next(0);
     this.router.navigate(['login']);
