@@ -143,6 +143,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           if (session.min_age_limit == this.ageLimit.value) {
             session.name = center.name;
             session.center_id = center.center_id;
+            session.fee_type = center.fee_type;
             this.sessions.push(session);
 
             if (session.available_capacity > this.beneficiaries.length && !this.sessionFound) {

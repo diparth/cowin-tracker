@@ -54,7 +54,7 @@
       <div *ngFor="let session of sessions; index as index" class="user-card">
         <p>{{ session.name }}</p>
         <p>{{ session.date }}</p>
-        <p>Age: {{ session.min_age_limit }} | {{ session.vaccine }}</p>
+        <p>Age: {{ session.min_age_limit }} | {{ session.vaccine }} | {{ session.fee_type }}</p>
         <p class="capacity" [ngClass]="{
           'booked': session.available_capacity == 0,
           'mid': session.available_capacity <= 10 && session.available_capacity > 0,

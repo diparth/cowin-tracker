@@ -14,13 +14,15 @@ export class NavBarComponent implements OnInit {
   public counter: string = undefined;
   public interval: any;
 
-  constructor(private authService: AuthenticateService, private router: Router, private localStorageService: LocalStorageService) { }
-
-  ngOnInit(): void {
+  constructor(private authService: AuthenticateService, private router: Router, private localStorageService: LocalStorageService) {
+    console.log('Logged In => ', this.authService.isLoggedIn);
     if (!this.authService.isLoggedIn) {
+      debugger
       this.router.navigate(['login']);
     }
+  }
 
+  ngOnInit(): void {
     const lgTime = this.localStorageService.getFromLocalStorage('logout_time');
     if (!Utils.isNullOrUndefined(lgTime)) {
       this.counter = lgTime;

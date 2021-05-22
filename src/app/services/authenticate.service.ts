@@ -60,7 +60,7 @@ export class AuthenticateService {
   public get accessToken(): string {
     const localData = JSON.parse(localStorage.getItem('login_creds'));
 
-    return Utils.isNullOrUndefined(localData) ? undefined : `Bearer ${localData.token}`;
+    return Utils.isNullOrUndefined(localData) ? undefined : (Utils.isNullOrUndefined(localData.token) ? undefined : `Bearer ${localData.token}`);
   }
 
   public get txnId(): string {

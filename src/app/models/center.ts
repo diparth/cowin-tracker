@@ -18,6 +18,7 @@ export interface Session {
   name?: string;
   center_id?: number;
   session_id: string;
+  fee_type?: string;
   date: string;
   available_capacity: number;
   min_age_limit: number;
